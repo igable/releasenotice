@@ -6,7 +6,7 @@ import ConfigParser
 
 if __name__ == '__main__':
 
-    config = ConfigParser.ConfigParser(description='send release notices to slack channels')
+    config = ConfigParser.ConfigParser()
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--product', '-p', help='product to post a message about', required=True)
