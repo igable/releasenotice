@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+from slacker import Slacker
+import argparse
+import ConfigParser
+
+if __name__ == '__main__':
+
+    config = ConfigParser.ConfigParser(description='send release notices to slack channels')
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--product', '-p', help='product to post a message about', required=True)
+    parser.add_argument('--version', '-v', help='product version to post a message about', required=True)
+    parser.add_argument('--config-file', '-c', help='path to config file', required=True)
+
+    cmd_args = parser.parse_args()
+
+    config.read(cmd_args.config_file)
+
+    message = config.get(cmd_args.product, "message")
+    message = message.replace('VERSION', cmd_args.version)
+
+    channel = config.get(cmd_args.product, "channel")
+    emoji = config.get(cmd_args.product, "emoji")
+    botname = config.get(cmd_args.product, "botname")
+
+    api_key = config.get("slack", "api_key")
+
+    slack = Slacker(api_key)
+
+    slack.chat.post_message(channel, message, username=botname, icon_emoji=emoji)
