@@ -8,12 +8,18 @@ Install
 -------
 
     git clone https://github.com/igable/releasenotice.git
-    pip install Slacker argparse
+    python setup.py install
+    
+or get it from py PyPI
+
+    pip install -U releasenotice
+    
     
 Configure
 ---------
 
-Edit the config file with you messages and your slack API key:
+Edit the [config file](https://github.com/igable/releasenotice/blob/master/releasenotice.conf)
+with you messages and your slack API key:
 
     vim releasenotice.conf
 
@@ -24,7 +30,17 @@ Run
 
 Post the message:
 
-    ./releasenotice --config-file releasenotice.conf --product exampleproduct --version 1.0.0
+    releasenotice --config-file releasenotice.conf --product exampleproduct --version 1.0.0
+    
+    
+or load the config file from a URL. In this case you must set the environement variable `SLACK_API_KEY`, **don't post your
+Slack API key** to the web in the config file accidentally.
+
+    export SLACK_API_KEY=xoxp-0123456789-0123456789-0123456789-123a456
+    releasenotice --http-config-file https://gist.githubusercontent.com/igable/x/raw/y/releasenotice.conf --product mixcoatl --version 1.2.0
+    
+
+    
     
 
 You will get a slack message like this:
