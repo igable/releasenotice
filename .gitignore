@@ -1,1 +1,4 @@
 releasenotice-creds.conf
+build
+dist
+*.egg-info
