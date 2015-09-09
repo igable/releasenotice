@@ -33,7 +33,9 @@ if __name__ == '__main__':
     message = config.get(cmd_args.product, "message")
     message = message.replace('VERSION', cmd_args.version)
 
-    channel = config.get(cmd_args.product, "channel")
+    # handle comma separated list of channels
+    channel = config.get(cmd_args.product, "channel").split(',')
+
     emoji = config.get(cmd_args.product, "emoji")
     botname = config.get(cmd_args.product, "botname")
 
@@ -46,4 +48,5 @@ if __name__ == '__main__':
 
     slack = Slacker(api_key)
 
-    slack.chat.post_message(channel, message, username=botname, icon_emoji=emoji)
+    for c in channel:
+        slack.chat.post_message(c.strip(), message, username=botname, icon_emoji=emoji)

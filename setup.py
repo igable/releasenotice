@@ -15,7 +15,7 @@ if sys.version_info < (2, 7):
     requires.append('argparse')
 
 setup(name='releasenotice',
-      version="0.1.1",
+      version="0.2.0",
       license="Apache 2'",
       install_requires=requires,
       description='A tool for automated release announcement to Slack chat.',
