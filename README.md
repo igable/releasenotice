@@ -25,6 +25,9 @@ with you messages and your slack API key:
 
 You can set the channel for the message, the bot name, and the emoji used.
 
+You can obtain a Slack API token from [https://api.slack.com/web](https://api.slack.com/web)
+(look near the bottom of the page)
+
 Run
 ---
 
